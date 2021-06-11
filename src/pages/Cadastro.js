@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TextInput} from 'react-native';
-import { TouchableOpacity } from '@react-navigation/native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+
 //import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 import api from '../services/api';
@@ -96,9 +96,7 @@ export default function Abertura({ navigation }){
 
         
 
-        <TouchableOpacity 
-            style={styles.button}
-            onPress={handleSubmit}>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text>CADASTRAR</Text>
         </TouchableOpacity>
 

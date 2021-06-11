@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, KeyboardAvoidingView} from 'react-native';
-import { TouchableOpacity } from '@react-navigation/native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 //import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 import api from '../services/api';
@@ -46,7 +45,7 @@ export default function Login({ navigation }){
 
 
     return (
-    <KeyboardAvoidingView enabled={Platform.Os === 'ios'} style={styles.container}>
+    <View style={styles.container}>
         <Image 
             source={Logo}
             style={styles.logo}
@@ -86,7 +85,9 @@ export default function Login({ navigation }){
             />            
         </View>
 
-        <Text style={styles.labelBold}>Esqueceu sua senha?</Text>
+        <TouchableOpacity style={styles.labelBold}>
+            <Text>Esqueceu sua senha?</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={handleSubmit} style={styles.button}>
             <Text>ENTRAR</Text>
@@ -95,7 +96,8 @@ export default function Login({ navigation }){
         <Text style={styles.labelCadastro}>Ainda não possui cadastro? Crie um 
             <Text onPress={handleSubmitCadastro}  style={styles.labelBold}> clicando aqui</Text>
         </Text>
-    </KeyboardAvoidingView>
+        
+    </View>
     );
 }
 
