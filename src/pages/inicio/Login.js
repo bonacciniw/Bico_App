@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 //import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
-import api from '../services/api';
+import api from '../../services/api';
 
-import Logo from '../../assets/Icon_empresa.png';
+import Logo from '../../../assets/Icon_empresa.png';
 
 
 export default function Login({ navigation }){
@@ -22,7 +22,7 @@ export default function Login({ navigation }){
 
     async function handleSubmit() {
         
-        await api.get('/user/dados', {
+        /*await api.get('/user/dados', {
             cmailuser,
             csenhuser
         })
@@ -31,7 +31,7 @@ export default function Login({ navigation }){
         })
         .catch(error => {
             console.log(error);
-        });
+        });*/
 
         //await AsyncStorage.setItem('cmailuser', cmailuser);
         //await AsyncStorage.setItem('csenhuser', csenhuser);

@@ -3,9 +3,9 @@ import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react
 
 //import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
-import api from '../services/api';
+import api from '../../services/api';
 
-import Logo from '../../assets/Icon_empresa.png';
+import Logo from '../../../assets/Icon_empresa.png';
 
 export default function Abertura({ navigation }){
 

@@ -1,7 +1,7 @@
 import {React, useEffect } from 'react';
 import { View, Image, StyleSheet} from 'react-native';
 
-import Logo from '../../assets/Icon_empresa.png';
+import Logo from '../../../assets/Icon_empresa.png';
 
 export default function Abertura({ navigation }){
 
