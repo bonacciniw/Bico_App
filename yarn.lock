@@ -1704,6 +1704,16 @@
     "@babel/runtime" "^7.7.2"
     "regenerator-runtime" "^0.13.3"
 
+"@mdi/js@^5.9.55":
+  "integrity" "sha512-BbeHMgeK2/vjdJIRnx12wvQ6s8xAYfvMmEAVsUx9b+7GiQGQ9Za8jpwp17dMKr9CgKRvemlAM4S7S3QOtEbp4A=="
+  "resolved" "https://registry.npmjs.org/@mdi/js/-/js-5.9.55.tgz"
+  "version" "5.9.55"
+
+"@mdi/react@^1.5.0":
+  "integrity" "sha512-NztRgUxSYD+ImaKN94Tg66VVVqXj4SmlDGzZoz48H9riJ+Awha56sfXH2fegw819NWo7KI3oeS1Es0lNQqwr0w=="
+  "resolved" "https://registry.npmjs.org/@mdi/react/-/react-1.5.0.tgz"
+  "version" "1.5.0"
+
 "@react-native-community/cli-debugger-ui@^4.13.1":
   "integrity" "sha512-UFnkg5RTq3s2X15fSkrWY9+5BKOFjihNSnJjTV2H5PtTUFbd55qnxxPw8CxSfK0bXb1IrSvCESprk2LEpqr5cg=="
   "resolved" "https://registry.npmjs.org/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz"

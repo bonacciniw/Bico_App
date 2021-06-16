@@ -8,7 +8,7 @@ export default function({ navigation }) {
 
     return(
         <View>
-            <Text>Teste Principal</Text>
+            <Text>Teste Pesquisa</Text>
         </View>
     );
 
