@@ -7,9 +7,24 @@ export default function({ navigation }) {
 
 
     return(
-        <View>
-            <Text>Teste Favoritos</Text>
+        <View style={styles.container}>
+            <Text style={styles.Text}>Favoritos</Text>
         </View>
     );
 
 }
+
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#DDE0E1',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    Text: {
+        fontSize: 30
+    }
+
+});

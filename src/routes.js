@@ -20,7 +20,7 @@ const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 /*
-<Stack.Navigator>
+    <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
 */

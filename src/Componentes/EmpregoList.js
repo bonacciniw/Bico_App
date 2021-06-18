@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import {  SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function EmpregoList(props) {
-    return  <View style={styles.containerEmpr}>
+    return  <SafeAreaView style={styles.containerEmpr}>
                 <Text>{props.emprego}</Text>
-            </View>
+            </SafeAreaView>
 }
 
 

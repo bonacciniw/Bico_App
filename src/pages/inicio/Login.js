@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
 //import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 import api from '../../services/api';
 
 import Logo from '../../../assets/Icon_empresa.png';
+import fundo from '../../../assets/fundo_login.jpeg';
+import ico from '../../../assets/ico.png'
+//import { color } from 'react-native-reanimated';
 
 
 export default function Login({ navigation }){
     const [ cmailuser, setEmail] = useState('');
     const [ csenhuser, setSenha] = useState('');
+
+    function validaCampos() {
+        if (cmailuser.length = 0){
+            
+        }
+    };
 
     /*useEffect(() => {
         const usua = AsyncStorage.getItem('cmailuser');
@@ -21,8 +30,8 @@ export default function Login({ navigation }){
     }, []);*/
 
     async function handleSubmit() {
-        
-        /*await api.get('/user/dados', {
+        /*
+        await api.get('/user/dados', {
             cmailuser,
             csenhuser
         })
@@ -46,71 +55,73 @@ export default function Login({ navigation }){
 
     return (
     <View style={styles.container}>
-        <Image 
-            source={Logo}
-            style={styles.logo}
-        />
-        
-        <Text style={styles.label}>LOGIN</Text>
-        <View style={styles.form} >
-            <TextInput 
-                style={styles.input}
-                textAlign="center"
-                textContentType='emailAddress'
-                placeholder="E-mail"
-                placeholderTextColor="#D9DBDC"
-                keyboardType="email-address"
-                autoCompleteType="email"
-                autoCapitalize="none"
-                autoCorrect={false}
-                value={cmailuser}
-                onChangeText={setEmail}
-            />            
-        </View>
+        <ImageBackground  source={fundo}  style={styles.image}>
+            <Image 
+                source={ico}
+                style={styles.logo}
+            />
+            
+            <Text style={styles.label}>LOGIN</Text>
+            <View style={styles.form} >
+                <TextInput 
+                    style={styles.input}
+                    textAlign="center"
+                    textContentType='emailAddress'
+                    placeholder="E-mail"
+                    placeholderTextColor="#D9DBDC"
+                    keyboardType="email-address"
+                    autoCompleteType="email"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    value={cmailuser}
+                    onChangeText={setEmail}
+                />            
+            </View>
 
-        <Text style={styles.label}>SENHA</Text>
-        <View style={styles.form} >
-            <TextInput 
-                style={styles.input}
-                textAlign="center"
-                textContentType='password'
-                secureTextEntry={true}
-                placeholder="Senha"
-                placeholderTextColor="#D9DBDC"
-                autoCompleteType="password"
-                autoCapitalize="none"
-                autoCorrect={false}
-                value={csenhuser}
-                onChangeText={setSenha}
-            />            
-        </View>
+            <Text style={styles.label}>SENHA</Text>
+            <View style={styles.form} >
+                <TextInput 
+                    style={styles.input}
+                    textAlign="center"
+                    textContentType='password'
+                    secureTextEntry={true}
+                    placeholder="Senha"
+                    placeholderTextColor="#D9DBDC"
+                    autoCompleteType="password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    value={csenhuser}
+                    onChangeText={setSenha}
+                />            
+            </View>
 
-        <TouchableOpacity style={styles.labelBold}>
-            <Text>Esqueceu sua senha?</Text>
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.labelBold}>
+                <Text>Esqueceu sua senha?</Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleSubmit} style={styles.button}>
-            <Text>ENTRAR</Text>
-        </TouchableOpacity>
+            <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+                <Text style={styles.labelEntrar} >ENTRAR</Text>
+            </TouchableOpacity>
 
-        <Text style={styles.labelCadastro}>Ainda não possui cadastro? Crie um 
-            <Text onPress={handleSubmitCadastro}  style={styles.labelBold}> clicando aqui</Text>
-        </Text>
-        
+            <Text style={styles.labelCadastro}>Ainda não possui cadastro? Crie um 
+                <Text onPress={handleSubmitCadastro}  style={styles.labelBold}> clicando aqui</Text>
+            </Text>
+        </ImageBackground>    
     </View>
     );
 }
 
 const styles = StyleSheet.create({
     logo: {
-        marginBottom: 75
+        marginBottom: 75,
+        width:  200,
+        height:  200
     },
 
     container: {
         backgroundColor: '#DDE0E1',
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'center'
     },
 
     input: {
@@ -164,5 +175,16 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginTop: 5,
         textDecorationLine: 'underline'
+    },
+
+    labelEntrar: {
+        color: "#00000F"
+    },
+
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+        alignItems: 'center'
     }
 });

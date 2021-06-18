@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {  SafeAreaView } from 'react-native-safe-area-context';
 
 import EmpregoList from '../../Componentes/EmpregoList';
 
@@ -10,9 +11,9 @@ export default function({ navigation }) {
     return(
         <View style={styles.container}>
 
-            <View style={styles.containerEmpr}>
-                <Text>Teste</Text>
-            </View>
+            <SafeAreaView style={styles.containerEmpr}>
+                
+            </SafeAreaView>
             
             <EmpregoList emprego="Restaurante" />
 
@@ -23,10 +24,6 @@ export default function({ navigation }) {
 
 
 const styles = StyleSheet.create({
-    logo: {
-        marginBottom: 75
-    },
-
     container: {
         backgroundColor: '#DDE0E1',
         flex: 1,
