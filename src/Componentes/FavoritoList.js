@@ -4,22 +4,24 @@ import {  SafeAreaView } from 'react-native-safe-area-context';
 
 import api from '../services/api';
 
-export default function EmpregoList(props) {
+export default function FavoritoList(User) {
 
 
     useEffect(() => {
-        async function loadEmpresas() {
-            const response = await api.get('/empresa/dados')
-
+        async function loadFavoritos() {
+            const response = await api.get('/empresa/dados', {
+                params: {User}
+            })
+            
            // setEmpresas(response.data);
         }
 
-        loadEmpresas();
+        loadFavoritos();
     }, []);
 
     return ( 
         <SafeAreaView style={styles.containerEmpr}>
-            <Text>{props.emprego}</Text>
+            <Text>{props.User}</Text>
         </SafeAreaView>
     )
 }

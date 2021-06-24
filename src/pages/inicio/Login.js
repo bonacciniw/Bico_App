@@ -4,21 +4,26 @@ import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ImageBackgr
 
 import api from '../../services/api';
 
-import Logo from '../../../assets/Icon_empresa.png';
 import fundo from '../../../assets/fundo_login.jpeg';
 import ico from '../../../assets/ico.png'
 //import { color } from 'react-native-reanimated';
 
 
 export default function Login({ navigation }){
-    const [ cmailuser, setEmail] = useState('');
-    const [ csenhuser, setSenha] = useState('');
+    const [ cmailuser, setEmail] = useState(null);
+    const [ csenhuser, setSenha] = useState(null);
+    //var erro;
+    
 
-    function validaCampos() {
-        if (cmailuser.length = 0){
-            
+    /*async function validarCampos() {
+        if ( cmailuser == null ){
+            return "Preencha seu E-mail";
         }
-    };
+        if ( csenhuser == null ){
+            return "Preencha a senha";
+        }else
+            return ""
+    };*/
 
     /*useEffect(() => {
         const usua = AsyncStorage.getItem('cmailuser');
@@ -30,8 +35,7 @@ export default function Login({ navigation }){
     }, []);*/
 
     async function handleSubmit() {
-        /*
-        await api.get('/user/dados', {
+        const  response = await api.get('/user/dados', {
             cmailuser,
             csenhuser
         })
@@ -40,12 +44,14 @@ export default function Login({ navigation }){
         })
         .catch(error => {
             console.log(error);
-        });*/
+        });
 
         //await AsyncStorage.setItem('cmailuser', cmailuser);
         //await AsyncStorage.setItem('csenhuser', csenhuser);
 
-        navigation.navigate('Principal');
+        if(response.sucess == true) {
+            navigation.navigate('Principal');
+        }
     };
 
     async function handleSubmitCadastro() {
@@ -98,6 +104,7 @@ export default function Login({ navigation }){
             <TouchableOpacity style={styles.labelBold}>
                 <Text>Esqueceu sua senha?</Text>
             </TouchableOpacity>
+
 
             <TouchableOpacity onPress={handleSubmit} style={styles.button}>
                 <Text style={styles.labelEntrar} >ENTRAR</Text>
@@ -186,5 +193,10 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
         justifyContent: "center",
         alignItems: 'center'
+    },
+
+    validar: {
+        fontSize: 20,
+        color: "#FFFFFF"
     }
 });

@@ -6,14 +6,10 @@ import EmpregoList from '../../Componentes/EmpregoList';
 
 export default function({ navigation }) {
 
-
+    
 
     return(
         <View style={styles.container}>
-
-            <SafeAreaView style={styles.containerEmpr}>
-                
-            </SafeAreaView>
             
             <EmpregoList emprego="Restaurante" />
 
