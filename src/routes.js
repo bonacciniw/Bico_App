@@ -1,13 +1,11 @@
 
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-//import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { View, Text, Image, StyleSheet} from 'react-native';
 
 
-//import Abertura from './pages/Abertura';
+
 import Cadastro from './pages/inicio/Cadastro';
 import Login from './pages/inicio/Login';
 import Principal from './pages/principal/Principal';
