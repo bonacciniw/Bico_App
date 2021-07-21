@@ -35,7 +35,7 @@ export default function Login({ navigation }){
     }, []);*/
 
     async function handleSubmit() {
-        const  response = await api.get('/user/dados', {
+        /*const  response = await api.get('/user/dados', {
             cmailuser,
             csenhuser
         })
@@ -44,14 +44,14 @@ export default function Login({ navigation }){
         })
         .catch(error => {
             console.log(error);
-        });
+        });*/
 
         //await AsyncStorage.setItem('cmailuser', cmailuser);
         //await AsyncStorage.setItem('csenhuser', csenhuser);
 
-        if(response.sucess == true) {
+        //if(response.sucess == true) {
             navigation.navigate('Principal');
-        }
+        //}
     };
 
     async function handleSubmitCadastro() {
