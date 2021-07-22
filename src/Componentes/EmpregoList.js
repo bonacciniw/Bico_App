@@ -9,7 +9,7 @@ import imagem from '../../assets/Job.png';
 export default function EmpregoList(props) {
 
 
-    useEffect(() => {
+   /* useEffect(() => {
         async function loadEmpresas() {
             const response = await api.get('/empresa/dados')
 
@@ -17,7 +17,7 @@ export default function EmpregoList(props) {
         }
 
         loadEmpresas();
-    }, []);
+    }, []);*/
 
     return ( 
         <SafeAreaView style={styles.containerEmpr}>
@@ -38,14 +38,9 @@ export default function EmpregoList(props) {
 
 
 const styles = StyleSheet.create({
-    logo: {
-        marginBottom: 75
-    },
-
     containerEmpr: {
         backgroundColor: '#CDDFFA',
         alignItems: 'center',
-        height: 250,
         width: 350,
         marginTop: 10,
         marginBottom: 10,
@@ -57,23 +52,21 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
         justifyContent: "center",
         alignItems: 'center',
-        width: 130,
         height: 250,
-        backgroundColor: '#1087AC'
+        backgroundColor: '#1087AC',
+        flex: 1
     },
 
     imagem: {
         resizeMode: "cover",
         justifyContent: "center",
-        alignItems: 'center',
-        width: 100,
-        height: 100
+        alignItems: 'center'
     },
 
     styleFundo: {
         marginLeft: 14,
         marginRight: 10,
-        height: 250,
+        flex: 2
     },
 
     Texto: {

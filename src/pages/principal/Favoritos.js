@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 
+import FavoritoList from '../../Componentes/FavoritoList';
 
 export default function({ navigation }) {
 
@@ -8,8 +9,15 @@ export default function({ navigation }) {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.Text}>Favoritos</Text>
-        </View>
+            <ScrollView style={styles.scrollView}>
+                    <FavoritoList nome="Lucas Souza" local="Londrina" emprego="Restaurante"/>
+                    <FavoritoList nome="Jose da Silva" local="Ibiporã" emprego="Loja"/>
+                    <FavoritoList nome="Rafael Siqueira" local="Londrina" emprego="Marmoraria"/>
+                    <FavoritoList nome="Marcela Duarte" local="Cambe" emprego="Faxineira"/>
+                    <FavoritoList nome="Felipe Ramos" local="Cambe" emprego="Barbearia"/>
+                    <FavoritoList nome="Barbara Menezes" local="Londrina" emprego="Baba"/>
+            </ScrollView>
+        </View> 
     );
 
 }
@@ -17,7 +25,7 @@ export default function({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#DDE0E1',
+        backgroundColor: '#E5E5E5',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'

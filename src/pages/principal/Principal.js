@@ -14,8 +14,9 @@ export default function({ navigation }) {
             <View style={styles.formBarraPesquisa}>
                 <TextInput 
                     style={styles.barraPesquisa}
-                    textAlign="center"
-                    placeholderTextColor="#D9DBDC">    
+                    textAlign="left"
+                    placeholderTextColor="#D9DBDC"
+                    placeholder="Pesquisar">    
                 </TextInput> 
                 <Image source={iconPesquisa} style={styles.imagem}/>                 
             </View>
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     },
     barraPesquisa: {
         backgroundColor: '#1199C5',
-        width: 250 
+        width: 290 
     },
     imagem: {
         resizeMode: "cover",
