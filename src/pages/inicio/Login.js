@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
+import { Formik } from 'formik';
 //import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 import api from '../../services/api';
@@ -12,19 +13,8 @@ import ico from '../../../assets/ico.png'
 export default function Login({ navigation }){
     const [ cmailuser, setEmail] = useState(null);
     const [ csenhuser, setSenha] = useState(null);
-    //var erro;
+    const entrou = false;
     
-
-    /*async function validarCampos() {
-        if ( cmailuser == null ){
-            return "Preencha seu E-mail";
-        }
-        if ( csenhuser == null ){
-            return "Preencha a senha";
-        }else
-            return ""
-    };*/
-
     /*useEffect(() => {
         const usua = AsyncStorage.getItem('cmailuser');
         const senh = AsyncStorage.getItem('csenhuser');
@@ -34,24 +24,10 @@ export default function Login({ navigation }){
         };
     }, []);*/
 
-    async function handleSubmit() {
-        /*const  response = await api.get('/user/dados', {
-            cmailuser,
-            csenhuser
-        })
-        .then(response => {
-            console.log(response);
-        })
-        .catch(error => {
-            console.log(error);
-        });*/
-
+    async function Login() {
+        
         //await AsyncStorage.setItem('cmailuser', cmailuser);
         //await AsyncStorage.setItem('csenhuser', csenhuser);
-
-        //if(response.sucess == true) {
-            navigation.navigate('Principal');
-        //}
     };
 
     async function handleSubmitCadastro() {
@@ -61,59 +37,84 @@ export default function Login({ navigation }){
 
     return (
     <View style={styles.container}>
-        <ImageBackground  source={fundo}  style={styles.image}>
-            <Image 
-                source={ico}
-                style={styles.logo}
-            />
-            
-            <Text style={styles.label}>LOGIN</Text>
-            <View style={styles.form} >
-                <TextInput 
-                    style={styles.input}
-                    textAlign="center"
-                    textContentType='emailAddress'
-                    placeholder="E-mail"
-                    placeholderTextColor="#D9DBDC"
-                    keyboardType="email-address"
-                    autoCompleteType="email"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    value={cmailuser}
-                    onChangeText={setEmail}
-                />            
-            </View>
+        <Formik
+            initialValues={{ cmailuser: '', csenhuser: '' }}
+            onSubmit={(value) => {
+                if (value.cmailuser == '') 
+                    alert(`E-mail invalido!`)
+                else if (value.csenhuser == '') 
+                    alert(`Senha invalida!`)
+                else {
+                    const response = api.get('/user/dados', {
+                        cmailuser,
+                        csenhuser
+                    })
+                    .then(response => {
+                        console.log(response);
+                        navigation.navigate('Principal');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                } 
+            }}
+        >
+            {(props) => (
+                <ImageBackground  source={fundo}  style={styles.image}>
+                    <Image 
+                        source={ico}
+                        style={styles.logo}
+                    />
+                    
+                    <Text style={styles.label}>LOGIN</Text>
+                    <View style={styles.form} >
+                        <TextInput 
+                            style={styles.input}
+                            textAlign="center"
+                            textContentType='emailAddress'
+                            placeholder="E-mail"
+                            placeholderTextColor="#D9DBDC"
+                            keyboardType="email-address"
+                            autoCompleteType="email"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            value={props.values.cmailuser}
+                            onChangeText={props.handleChange('cmailuser')}
+                        />            
+                    </View>
 
-            <Text style={styles.label}>SENHA</Text>
-            <View style={styles.form} >
-                <TextInput 
-                    style={styles.input}
-                    textAlign="center"
-                    textContentType='password'
-                    secureTextEntry={true}
-                    placeholder="Senha"
-                    placeholderTextColor="#D9DBDC"
-                    autoCompleteType="password"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    value={csenhuser}
-                    onChangeText={setSenha}
-                />            
-            </View>
+                    <Text style={styles.label}>SENHA</Text>
+                    <View style={styles.form} >
+                        <TextInput 
+                            style={styles.input}
+                            textAlign="center"
+                            textContentType='password'
+                            secureTextEntry={true}
+                            placeholder="Senha"
+                            placeholderTextColor="#D9DBDC"
+                            autoCompleteType="password"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            value={props.values.csenhuser}
+                            onChangeText={props.handleChange('csenhuser')}
+                        />            
+                    </View>
 
-            <TouchableOpacity style={styles.labelBold}>
-                <Text>Esqueceu sua senha?</Text>
-            </TouchableOpacity>
+                    <TouchableOpacity style={styles.labelBold}>
+                        <Text>Esqueceu sua senha?</Text>
+                    </TouchableOpacity>
 
 
-            <TouchableOpacity onPress={handleSubmit} style={styles.button}>
-                <Text style={styles.labelEntrar} >ENTRAR</Text>
-            </TouchableOpacity>
+                    <TouchableOpacity onPress={props.handleSubmit} style={styles.button}>
+                        <Text style={styles.labelEntrar} >ENTRAR</Text>
+                    </TouchableOpacity>
 
-            <Text style={styles.labelCadastro}>Ainda não possui cadastro? Crie um 
-                <Text onPress={handleSubmitCadastro}  style={styles.labelBold}> clicando aqui</Text>
-            </Text>
-        </ImageBackground>    
+                    <Text style={styles.labelCadastro}>Ainda não possui cadastro? Crie um 
+                        <Text onPress={handleSubmitCadastro}  style={styles.labelBold}> clicando aqui</Text>
+                    </Text>
+                </ImageBackground>
+            )}
+        </Formik>    
     </View>
     );
 }
