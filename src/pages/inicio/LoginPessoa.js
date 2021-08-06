@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
 import { Formik } from 'formik';
+import styles from '../../Styles/StylesInicio';
 //import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 import api from '../../services/api';
@@ -10,7 +11,7 @@ import ico from '../../../assets/ico.png'
 //import { color } from 'react-native-reanimated';
 
 
-export default function Login({ navigation }){
+export default function LoginPessoa({ navigation }){
     const [ cmailuser, setEmail] = useState(null);
     const [ csenhuser, setSenha] = useState(null);
     const entrou = false;
@@ -23,12 +24,6 @@ export default function Login({ navigation }){
             navigation.navigate('Principal');
         };
     }, []);*/
-
-    async function Login() {
-        
-        //await AsyncStorage.setItem('cmailuser', cmailuser);
-        //await AsyncStorage.setItem('csenhuser', csenhuser);
-    };
 
     async function handleSubmitCadastro() {
         navigation.navigate('Cadastro');
@@ -118,86 +113,3 @@ export default function Login({ navigation }){
     </View>
     );
 }
-
-const styles = StyleSheet.create({
-    logo: {
-        marginBottom: 75,
-        width:  200,
-        height:  200
-    },
-
-    container: {
-        backgroundColor: '#DDE0E1',
-        flex: 1,
-        justifyContent: 'center'
-    },
-
-    input: {
-        backgroundColor: '#1199C5',
-        borderWidth: 0.2,
-        borderRadius: 50,
-        width: 300,
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-
-    form: {
-        width: 250,
-        height: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 10
-    },
-
-    label: {
-        fontSize: 18,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 15,
-        marginTop: 25   
-    },
-
-    button:{
-        backgroundColor: '#1199C5',
-        borderWidth: 0.2,
-        borderRadius: 50,
-        width: 300,
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 80
-    },
-
-    labelCadastro: {
-        fontSize: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 10
-    },
-
-    labelBold: {
-        fontSize: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontWeight: "bold",
-        marginTop: 5,
-        textDecorationLine: 'underline'
-    },
-
-    labelEntrar: {
-        color: "#00000F"
-    },
-
-    image: {
-        flex: 1,
-        resizeMode: "cover",
-        justifyContent: "center",
-        alignItems: 'center'
-    },
-
-    validar: {
-        fontSize: 20,
-        color: "#FFFFFF"
-    }
-});

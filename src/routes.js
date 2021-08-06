@@ -7,21 +7,15 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 import Cadastro from './pages/inicio/Cadastro';
-import Login from './pages/inicio/Login';
+import LoginPessoa from './pages/inicio/LoginPessoa';
+import ModoLogin from './pages/inicio/ModoLogin';
 import Principal from './pages/principal/Principal';
-import Empregos from './pages/principal/Empregos';
 import Favoritos from './pages/principal/Favoritos';
 import Pesquisa from './pages/principal/Pesquisa';
 import Perfil from './pages/Cadastro/Perfil'
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
-
-/*
-    <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
-    </Stack.Navigator>
-*/
 
 export default function Routes() {
 
@@ -38,17 +32,6 @@ export default function Routes() {
                             ),
                         }
                     } />
-                    <Tab.Screen 
-                        name ="Empregos"
-                        component={Empregos} 
-                        options={{
-                            tabBarLabel: 'Bicos',
-                            tabBarColor: "#007FA7",
-                            tabBarIcon: ({ color }) => (
-                                <MaterialCommunityIcons name="briefcase" color={"#000000"} size={26} />
-                            ),
-                        }}
-                    />
                     <Tab.Screen 
                         name ="Pesquisa" 
                         component={Pesquisa}
@@ -88,8 +71,16 @@ export default function Routes() {
     return (
         <Stack.Navigator>
             <Stack.Screen 
-                name="Login" 
-                component={Login}
+                name="ModoLogin" 
+                component={ModoLogin}
+                options={{
+                    headerLeft: ()=> null,
+                    headerShown: false
+                }} 
+            />
+            <Stack.Screen 
+                name="LoginPessoa" 
+                component={LoginPessoa}
                 options={{
                     headerLeft: ()=> null,
                     headerShown: false
