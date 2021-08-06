@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 
 import FavoritoList from '../../Componentes/FavoritoList';
+import Styles from '../../Styles/StylesAbasPrincipais';
 
 export default function({ navigation }) {
-
-
-
     return(
-        <View style={styles.container}>
-            <ScrollView style={styles.scrollView}>
+        <View style={Styles.container}>
+            <ScrollView style={Styles.scrollView}>
                     <FavoritoList nome="Lucas Souza" local="Londrina" emprego="Restaurante"/>
                     <FavoritoList nome="Jose da Silva" local="Ibiporã" emprego="Loja"/>
                     <FavoritoList nome="Rafael Siqueira" local="Londrina" emprego="Marmoraria"/>

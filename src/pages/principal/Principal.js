@@ -3,25 +3,24 @@ import { View, Text, Image, StyleSheet, ScrollView, TextInput, TouchableOpacity}
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import EmpregoList from '../../Componentes/EmpregoList';
-
+import Styles from '../../Styles/StylesAbasPrincipais';
 import iconPesquisa from '../../../assets/pesquisar.png'
 
 export default function({ navigation }) {
-
     return(
-        <View style={styles.container}>
+        <View style={Styles.container}>
 
-            <View style={styles.formBarraPesquisa}>
+            <View style={Styles.formBarraPesquisa}>
                 <TextInput 
-                    style={styles.barraPesquisa}
+                    style={Styles.barraPesquisa}
                     textAlign="left"
                     placeholderTextColor="#D9DBDC"
                     placeholder="Pesquisar">    
                 </TextInput> 
-                <Image source={iconPesquisa} style={styles.imagem}/>                 
+                <Image source={iconPesquisa} style={Styles.imagem}/>                 
             </View>
 
-           <ScrollView style={styles.scrollView}>
+           <ScrollView style={Styles.scrollView}>
                 <EmpregoList nome="Lucas Souza" local="Londrina" emprego="Restaurante"/>
                 <EmpregoList nome="Jose da Silva" local="Ibiporã" emprego="Loja"/>
                 <EmpregoList nome="Rafael Siqueira" local="Londrina" emprego="Marmoraria"/>
@@ -33,39 +32,3 @@ export default function({ navigation }) {
     );
 
 }
-
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#E5E5E5',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    scrollView: {
-        marginHorizontal: 20,
-        flex: 1,
-        marginTop: 20
-    },
-    barraPesquisa: {
-        backgroundColor: '#1199C5',
-        width: 290 
-    },
-    imagem: {
-        resizeMode: "cover",
-        alignItems: 'center',
-        width: 40,
-        height: 40,
-        right: 10
-    },
-    formBarraPesquisa: {
-        backgroundColor: '#1199C5',
-        borderWidth: 0.2,
-        borderRadius: 50,
-        width: 350,
-        height: 40,
-        justifyContent: "flex-end",
-        flexDirection: "row",
-        marginTop: 50
-    }
-});
