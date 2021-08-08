@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TextInput, TouchableOpacity} from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { View, Text, Image, ScrollView, TextInput} from 'react-native';
 
 import EmpregoList from '../../Componentes/EmpregoList';
 import Styles from '../../Styles/StylesAbasPrincipais';
 import iconPesquisa from '../../../assets/pesquisar.png'
+import api from '../../services/api';
 
 export default function({ navigation }) {
+
+    
+    /*const response = api.get('/profissional/groupProfissionais', {})
+    .then(response => {
+        return response.json();
+    })
+    .catch(error => {
+        console.log(error);
+    })
+    .then(json => {
+        const Cadastros = json.
+    });*/
+
     return(
         <View style={Styles.container}>
 
@@ -21,12 +34,7 @@ export default function({ navigation }) {
             </View>
 
            <ScrollView style={Styles.scrollView}>
-                <EmpregoList nome="Lucas Souza" local="Londrina" emprego="Restaurante"/>
-                <EmpregoList nome="Jose da Silva" local="Ibiporã" emprego="Loja"/>
-                <EmpregoList nome="Rafael Siqueira" local="Londrina" emprego="Marmoraria"/>
-                <EmpregoList nome="Marcela Duarte" local="Cambe" emprego="Faxineira"/>
-                <EmpregoList nome="Felipe Ramos" local="Cambe" emprego="Barbearia"/>
-                <EmpregoList nome="Barbara Menezes" local="Londrina" emprego="Baba"/>
+             <EmpregoList nome="Jose da Silva" local="Ibiporã" emprego="Loja"/>
            </ScrollView> 
         </View>
     );

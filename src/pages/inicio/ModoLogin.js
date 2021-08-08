@@ -13,10 +13,6 @@ import ico from '../../../assets/ico.png'
 
 export default function Login({ navigation }){
 
-    async function handleSubmitCadastro() {
-        navigation.navigate('Cadastro');
-    };
-
     function handleSubmitLoginProf() {
         navigation.navigate('LoginPessoa');
     }
@@ -45,23 +41,17 @@ export default function Login({ navigation }){
                     
                     <View style={styles.ViewerModologin} >
                         <View style={styles.inputModoLogin}>
-                            <Text style={styles.labelModoLogin} textAlign="center" onPress={handleSubmitLoginProf}>
-                                Como profissional
-                            </Text>         
+                            <Text style={styles.labelModoLogin} textAlign="center" onPress={handleSubmitLoginProf}>Como profissional</Text>         
                         </View>
                     </View>
                     <View style={styles.ViewerModologin} >
                         <View style={styles.inputModoLogin}>
-                            <Text style={styles.labelModoLogin} textAlign="center" onPress={handleSubmitLoginEmpr}>
-                                Como empresa
-                            </Text>       
+                            <Text style={styles.labelModoLogin} textAlign="center" onPress={handleSubmitLoginEmpr}>Como empresa</Text>       
                         </View>
                     </View>
                     <View style={styles.ViewerModologin} >
                         <View style={styles.inputModoLoginVisitante} >
-                            <Text style={styles.labelModoLogin} textAlign="center" onPress={handleSubmitPrincipal} >
-                                Como visitante, quero conhecer!
-                            </Text>       
+                            <Text style={styles.labelModoLogin} textAlign="center" onPress={handleSubmitPrincipal}>Como visitante, quero conhecer!</Text>       
                         </View>
                     </View>
                 </ImageBackground>
