@@ -1,0 +1,1 @@
+yarn add @react-native-community/masked-view @react-navigation/material-bottom-tabs @react-navigation/native @react-navigation/stack axios expo expo-status-bar formik react react-dom react-native react-native-cli react-native-gesture-handler react-native-paper react-native-safe-area-context react-native-screens react-native-vector-icons react-native-web yup
