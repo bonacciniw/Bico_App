@@ -11,14 +11,14 @@ import ico from '../../../assets/ico.png'
 //import { color } from 'react-native-reanimated';
 
 
-export default function LoginPessoa({ navigation }){
-    const [ cmailuser, setEmail] = useState(null);
-    const [ csenhuser, setSenha] = useState(null);
+export default function loginProfissional({ navigation }){
+    const [ email, setEmail] = useState(null);
+    const [ senha, setSenha] = useState(null);
     const entrou = false;
     
     /*useEffect(() => {
-        const usua = AsyncStorage.getItem('cmailuser');
-        const senh = AsyncStorage.getItem('csenhuser');
+        const usua = AsyncStorage.getItem('email');
+        const senh = AsyncStorage.getItem('senha');
 
         if (usua && senh )  {
             navigation.navigate('Principal');
@@ -29,28 +29,31 @@ export default function LoginPessoa({ navigation }){
         navigation.navigate('Cadastro');
     };
 
+    async function login(email, senha) {
+        console.log(JSON.stringify(values, null, 2));
+        api.get("/login", { email, senha })
+        .then(response => {
+            console.log(response);
+            navigation.navigate('Principal');
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
 
     return (
     <View style={styles.container}>
         <Formik
-            initialValues={{ cmailuser: '', csenhuser: '' }}
-            onSubmit={(value) => {
-                if (value.cmailuser == '') 
+            initialValues={{ email: '', senha: '' }}
+            onSubmit={(values) => {
+                navigation.navigate('Principal');
+                if (values.email == '') 
                     alert(`E-mail invalido!`)
-                else if (value.csenhuser == '') 
+                else if (values.senha == '') 
                     alert(`Senha invalida!`)
                 else {
-                    const response = api.get('/user/dados', {
-                        cmailuser,
-                        csenhuser
-                    })
-                    .then(response => {
-                        console.log(response);
-                        navigation.navigate('Principal');
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
+                    login(values);
                 } 
             }}
         >
@@ -73,8 +76,8 @@ export default function LoginPessoa({ navigation }){
                             autoCompleteType="email"
                             autoCapitalize="none"
                             autoCorrect={false}
-                            value={props.values.cmailuser}
-                            onChangeText={props.handleChange('cmailuser')}
+                            value={props.values.email}
+                            onChangeText={props.handleChange('email')}
                         />            
                     </View>
 
@@ -90,8 +93,8 @@ export default function LoginPessoa({ navigation }){
                             autoCompleteType="password"
                             autoCapitalize="none"
                             autoCorrect={false}
-                            value={props.values.csenhuser}
-                            onChangeText={props.handleChange('csenhuser')}
+                            value={props.values.senha}
+                            onChangeText={props.handleChange('senha')}
                         />            
                     </View>
 

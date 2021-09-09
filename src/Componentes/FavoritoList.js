@@ -1,25 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 import {  SafeAreaView } from 'react-native-safe-area-context';
-
-import api from '../services/api';
 
 import imagem from '../../assets/Job.png';
 
 export default function FavoritoList(props) {
-
-
-    /*useEffect(() => {
-        async function loadFavoritos() {
-            const response = await api.get('/empresa/dados', {
-                params: {User}
-            })
-            
-           // setEmpresas(response.data);
-        }
-
-        loadFavoritos();
-    }, []);*/
 
     return (
         

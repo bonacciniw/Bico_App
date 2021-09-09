@@ -1,23 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 import {  SafeAreaView } from 'react-native-safe-area-context';
-
-import api from '../services/api';
 
 import imagem from '../../assets/Job.png';
 
 export default function EmpregoList(props) {
-
-
-   /* useEffect(() => {
-        async function loadEmpresas() {
-            const response = await api.get('/empresa/dados')
-
-           // setEmpresas(response.data);
-        }
-
-        loadEmpresas();
-    }, []);*/
 
     return ( 
         <SafeAreaView style={styles.containerEmpr}>

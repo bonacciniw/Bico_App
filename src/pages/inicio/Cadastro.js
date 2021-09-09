@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
-
-//import { AsyncStorage } from '@react-native-async-storage/async-storage';
-
 import api from '../../services/api';
 
 import Logo from '../../../assets/Icon_empresa.png';
+import InputLabel from '../../Componentes/generico/InputLabel';
 
-export default function Abertura({ navigation }){
+export default function({ navigation }) { 
 
     const [ cmailuser, setEmail] = useState('');
     const [ csenhuser, setSenha] = useState('');
@@ -37,82 +35,84 @@ export default function Abertura({ navigation }){
     };
 
     return (
-    <View style={styles.container}>
-        <Image 
-            source={Logo}
-            style={styles.logo}
-        />
-        
-        <Text style={styles.label}>E-MAIL</Text>
-        <View style={styles.form} >
-            <TextInput 
-                style={styles.input}
-                textAlign="center"
-                textContentType='emailAddress'
-                placeholder="E-mail"
-                placeholderTextColor="#D9DBDC"
-                keyboardType="email-address"
-                autoCompleteType="email"
-                autoCapitalize="none"
-                autoCorrect={false}
-                value={cmailuser}
-                onChangeText={setEmail}
-            />            
-        </View>
+        <View style={styles.container}>
+            <Image 
+                source={Logo}
+                style={styles.logo}
+            />
+            
+            <Text style={styles.label}>E-MAIL</Text>
+            <View style={styles.form} >
+                <TextInput 
+                    style={styles.input}
+                    textAlign="center"
+                    textContentType='emailAddress'
+                    placeholder="E-mail"
+                    placeholderTextColor="#D9DBDC"
+                    keyboardType="email-address"
+                    autoCompleteType="email"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    value={cmailuser}
+                    onChangeText={setEmail}
+                />            
+            </View>
 
-        <Text style={styles.label}>SENHA</Text>
-        <View style={styles.form} >
-            <TextInput 
-                style={styles.input}
-                textAlign="center"
-                textContentType='password'
-                secureTextEntry={true}
-                placeholder="Senha"
-                placeholderTextColor="#D9DBDC"
-                autoCompleteType="password"
-                autoCapitalize="none"
-                autoCorrect={false}
-                value={csenhuser}
-                onChangeText={setSenha}
-            />            
-        </View>
+            <Text style={styles.label}>SENHA</Text>
+            <View style={styles.form} >
+                <TextInput 
+                    style={styles.input}
+                    textAlign="center"
+                    textContentType='password'
+                    secureTextEntry={true}
+                    placeholder="Senha"
+                    placeholderTextColor="#D9DBDC"
+                    autoCompleteType="password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    value={csenhuser}
+                    onChangeText={setSenha}
+                />            
+            </View>
 
-        <Text style={styles.label}>CONFIRMAR SENHA SENHA</Text>
-        <View style={styles.form} >
-            <TextInput 
-                style={styles.input}
-                textAlign="center"
-                textContentType='password'
-                secureTextEntry={true}
-                placeholder="Confirmar Senha"
-                placeholderTextColor="#D9DBDC"
-                autoCompleteType="password"
-                autoCapitalize="none"
-                autoCorrect={false}
-                value={senha2}
-                onChangeText={setSenha2}
-            />            
-        </View>
+            <Text style={styles.label}>CONFIRMAR SENHA SENHA</Text>
+            <View style={styles.form} >
+                <TextInput 
+                    style={styles.input}
+                    textAlign="center"
+                    textContentType='password'
+                    secureTextEntry={true}
+                    placeholder="Confirmar Senha"
+                    placeholderTextColor="#D9DBDC"
+                    autoCompleteType="password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    value={senha2}
+                    onChangeText={setSenha2}
+                />            
+            </View>
 
-        
+            
 
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            <Text>CADASTRAR</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.labelCadastro}>Ao clicar em cadastrar você concorda com os
-            <TouchableOpacity>
-                <Text style={styles.labelBold}>TERMOS DE USO</Text>
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                <Text>CADASTRAR</Text>
             </TouchableOpacity>
-        </Text>
 
-    </View>
+            <Text style={styles.labelCadastro}>Ao clicar em cadastrar você concorda com os
+                <TouchableOpacity>
+                    <Text style={styles.labelBold}>TERMOS DE USO</Text>
+                </TouchableOpacity>
+            </Text>
+
+            
+
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     logo: {
-        marginBottom: 150
+        marginTop: 50
     },
 
     container: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 80
+        marginTop: 50
     },
 
     labelCadastro: {
