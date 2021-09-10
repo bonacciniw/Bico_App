@@ -7,8 +7,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 import Cadastro from './pages/inicio/Cadastro';
-import LoginPessoa from './pages/inicio/LoginPessoa';
-import ModoLogin from './pages/inicio/ModoLogin';
+import loginProfissional from './pages/inicio/loginProfissional';
+//import ModoLogin from './pages/inicio/ModoLogin';
 import Principal from './pages/principal/Principal';
 import Favoritos from './pages/principal/Favoritos';
 import Pesquisa from './pages/principal/Pesquisa';
@@ -67,20 +67,20 @@ export default function Routes() {
                     />
                 </Tab.Navigator>
     }
-
-    return (
-        <Stack.Navigator>
-            <Stack.Screen 
+            
+            /*<Stack.Screen 
                 name="ModoLogin" 
                 component={ModoLogin}
                 options={{
                     headerLeft: ()=> null,
                     headerShown: false
                 }} 
-            />
+            />*/
+    return (
+        <Stack.Navigator>
             <Stack.Screen 
-                name="LoginPessoa" 
-                component={LoginPessoa}
+                name="loginProfissional" 
+                component={loginProfissional}
                 options={{
                     headerLeft: ()=> null,
                     headerShown: false

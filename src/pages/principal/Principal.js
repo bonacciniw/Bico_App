@@ -34,6 +34,7 @@ export default function({ navigation }) {
             </View>
 
            <ScrollView style={Styles.scrollView}>
+               <inputLabel/>
              <EmpregoList nome="Jose da Silva" local="Ibiporã" emprego="Loja"/>
            </ScrollView> 
         </View>

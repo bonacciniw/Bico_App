@@ -14,7 +14,7 @@ import ico from '../../../assets/ico.png'
 export default function Login({ navigation }){
 
     function handleSubmitLoginProf() {
-        navigation.navigate('LoginPessoa');
+        navigation.navigate('loginProfissional');
     }
 
     function handleSubmitLoginEmpr() {
