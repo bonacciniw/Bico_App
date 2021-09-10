@@ -10,10 +10,8 @@ export default (props) => {
                 <TextInput 
                     style={styles.input}
                     textAlign="center"
-                    textContentType={props.type}
                     secureTextEntry={true}
                     placeholderTextColor="#D9DBDC"
-                    autoCompleteType="password"
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder={props.placeholder}
@@ -41,52 +39,13 @@ const styles = StyleSheet.create({
         width: 250,
         height: 30,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 10
+        alignItems: 'center'
     },
 
     label: {
         fontSize: 18,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 15,
-        marginTop: 25   
-    },
-
-    containerEmpr: {
-        backgroundColor: '#CDDFFA',
-        alignItems: 'center',
-        width: 350,
-        marginTop: 10,
-        marginBottom: 10,
-        flexDirection: "row",
-        justifyContent: "flex-start"
-    },
-
-    imagemFundo: {
-        resizeMode: "cover",
-        justifyContent: "center",
-        alignItems: 'center',
-        height: 250,
-        backgroundColor: '#1087AC',
-        flex: 1
-    },
-
-    imagem: {
-        resizeMode: "cover",
-        justifyContent: "center",
-        alignItems: 'center'
-    },
-
-    styleFundo: {
-        marginLeft: 14,
-        marginRight: 10,
-        flex: 2
-    },
-
-    Texto: {
-        fontSize: 20,
-        marginRight: 10
+        marginBottom: 15
     }
-
 });

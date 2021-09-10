@@ -3,7 +3,6 @@ import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react
 import api from '../../services/api';
 
 import Logo from '../../../assets/Icon_empresa.png';
-import InputLabel from '../../Componentes/generico/InputLabel';
 
 export default function({ navigation }) { 
 
