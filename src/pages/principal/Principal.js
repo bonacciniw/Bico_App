@@ -33,9 +33,11 @@ export default function({ navigation }) {
                 <Image source={iconPesquisa} style={Styles.imagem}/>                 
             </View>
 
-           <ScrollView style={Styles.scrollView}>
-               <inputLabel/>
-             <EmpregoList nome="Jose da Silva" local="Ibiporã" emprego="Loja"/>
+           <ScrollView style={Styles.scrollView}>              
+             <EmpregoList nome="Jose da Silva" local="Ibiporã" emprego="Vendedor(a)"/>
+             <EmpregoList nome="Lucas Souza" local="Londrina" emprego="Programador(a)"/>
+             <EmpregoList nome="Marcos Araujo" local="Londrina" emprego="Garçom"/>
+             <EmpregoList nome="Ana Milena" local="Cambe" emprego="Cuidadora"/>
            </ScrollView> 
         </View>
     );
