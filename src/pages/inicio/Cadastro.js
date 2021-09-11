@@ -9,23 +9,6 @@ import Logo from '../../../assets/ico.png';
 
 export default function({ navigation }) { 
 
-    async function cadastro(dados) {
-        let nome = dados.nome;
-        let email = dados.email;
-        let senha = dados.senha;
-        
-        await api.post('/cadastro', {
-                nome, email, senha
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-            //navigation.navigate('Login'); 
-    };
-
     return (
         <View style={styles.container}>
             
@@ -35,11 +18,26 @@ export default function({ navigation }) {
             />
     
             <Formik
-                initialValues={{ nome: '', email: '', senha: '', senha2: '' }}
+                initialValues={{ nome: '', email: '', senha: '', senha2: '', error: '' }}
                 validateOnChange
                 validationSchema={ValidateCadastro}
-                onSubmit={(values) => {
-                    cadastro(values);
+                onSubmit={(values, { setSubmitting, setErrors }) => {
+                    let nome = values.nome;
+                    let email = values.email;
+                    let senha = values.senha;
+
+                    api.post('/cadastro', {
+                        nome, email, senha
+                    })
+                    .then(res => {
+                        alert('Usuario cadastrado com sucesso!');
+                        navigation.navigate('loginProfissional');
+                    })
+                    .catch(error => {
+                        setSubmitting(false);                       
+                        setErrors(error.response.data);
+                        console.log(error.response.data);
+                    });
                 }}
             >
                 {(props) => (
@@ -58,7 +56,7 @@ export default function({ navigation }) {
                                 value={props.values.nome}
                                 onChangeText={text => props.setFieldValue('nome', text)}
                             />
-                            { props.errors.nome && <Text style={styles.errors}>{props.errors.nome}</Text> }
+                            { props.dirty && props.errors.nome && <Text style={styles.errors}>{props.errors.nome}</Text> }
                         </View>
 
                         
@@ -77,7 +75,7 @@ export default function({ navigation }) {
                                 value={props.values.email}
                                 onChangeText={text => props.setFieldValue('email', text)}
                             /> 
-                            { props.errors.email && <Text style={styles.errors}>{props.errors.email}</Text> }
+                            { props.dirty && props.errors.email && <Text style={styles.errors}>{props.errors.email}</Text> }
                         </View>
 
                         
@@ -96,7 +94,7 @@ export default function({ navigation }) {
                                 value={props.values.senha}
                                 onChangeText={text => props.setFieldValue('senha', text)}
                             />
-                            { props.errors.senha && <Text style={styles.errors}>{props.errors.senha}</Text> }      
+                            { props.dirty && props.errors.senha && <Text style={styles.errors}>{props.errors.senha}</Text> }      
                         </View>
 
                         
@@ -115,11 +113,13 @@ export default function({ navigation }) {
                                 value={props.values.senha2}
                                 onChangeText={text => props.setFieldValue('senha2', text)}
                             />    
-                            { props.errors.senha2 && <Text style={styles.errors}>{props.errors.senha2}</Text> }        
+                            { props.dirty && props.errors.senha2 && <Text style={styles.errors}>{props.errors.senha2}</Text> }        
                         </View>
+
+                        { props.errors.error && <Text style={styles.errorCadastro}>{props.errors.error}</Text> }
                         <TouchableOpacity style={styles.button} type="submit" onPress={props.handleSubmit}>
                             <Text>CADASTRAR</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity>                        
                     </View>
                 )}
             </Formik>
@@ -203,5 +203,9 @@ const styles = StyleSheet.create({
 
     errors: {
         color: 'red'
+    },
+
+    errorCadastro: {
+        marginBottom: -20,
     }
 });
