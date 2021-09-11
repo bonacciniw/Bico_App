@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
 import { Formik, useFormik, Form } from 'formik';
 import api from '../../services/api';
+import Yup from 'yup';
+import ValidateCadastro from '../../Componentes/schema/CadastroSchema';
 
-import Logo from '../../../assets/Icon_empresa.png';
+import Logo from '../../../assets/ico.png';
 
 export default function({ navigation }) { 
 
-    /*const [ cmailuser, setEmail] = useState('');
-    const [ csenhuser, setSenha] = useState('');
-    const [ senha2, setSenha2] = useState('');*/
-
-    async function handleSubmit() {
+    async function cadastro(dados) {
+        let nome = dados.nome;
+        let email = dados.email;
+        let senha = dados.senha;
         
-        if (csenhuser === senha2 ){
-            await api.post('/user/cadastro', {
-                cmailuser,
-                csenhuser
+        await api.post('/cadastro', {
+                nome, email, senha
             })
             .then(response => {
                 console.log(response);
@@ -24,26 +23,8 @@ export default function({ navigation }) {
             .catch(error => {
                 console.log(error);
             });
-
-            //const { _id } = response.data;
-
-            //await AsyncStorage.setItem('cmailuser', cmailuser);
-            //await AsyncStorage.setItem('csenhuser', csenhuser);
-
-            navigation.navigate('Login');
-        };    
+            //navigation.navigate('Login'); 
     };
-
-    const formik = useFormik({
-        initialValues: {
-          email: '',
-          senha: '',
-          senha2: '',
-        },
-        onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
-        },
-      });
 
     return (
         <View style={styles.container}>
@@ -54,21 +35,35 @@ export default function({ navigation }) {
             />
     
             <Formik
-                initialValues={{ email: '', senha: '', senha2: '' }}
+                initialValues={{ nome: '', email: '', senha: '', senha2: '' }}
+                validateOnChange
+                validationSchema={ValidateCadastro}
                 onSubmit={(values) => {
-                    if (values.email == '') 
-                        alert(`E-mail invalido!`)
-                    else if (values.senha == '') 
-                        alert(`Senha invalida!`)
-                    else {
-                        Alert('Esta funcionando');
-                    } 
+                    cadastro(values);
                 }}
             >
                 {(props) => (
                     <View style={styles.container}>
-                        <Text style={styles.label}>E-MAIL</Text>
+                        
                         <View style={styles.form} >
+                            <Text style={styles.label}>NOME</Text>  
+                            <TextInput 
+                                style={styles.input}
+                                textAlign="center"
+                                textContentType='emailAddress'
+                                placeholder="Nome completo"
+                                placeholderTextColor="#D9DBDC"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                value={props.values.nome}
+                                onChangeText={text => props.setFieldValue('nome', text)}
+                            />
+                            { props.errors.nome && <Text style={styles.errors}>{props.errors.nome}</Text> }
+                        </View>
+
+                        
+                        <View style={styles.form} >
+                            <Text style={styles.label}>E-MAIL</Text>
                             <TextInput 
                                 style={styles.input}
                                 textAlign="center"
@@ -80,12 +75,14 @@ export default function({ navigation }) {
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 value={props.values.email}
-                                onChangeText={props.handleChange}
-                            />            
+                                onChangeText={text => props.setFieldValue('email', text)}
+                            /> 
+                            { props.errors.email && <Text style={styles.errors}>{props.errors.email}</Text> }
                         </View>
 
-                        <Text style={styles.label}>SENHA</Text>
+                        
                         <View style={styles.form} >
+                            <Text style={styles.label}>SENHA</Text>
                             <TextInput 
                                 style={styles.input}
                                 textAlign="center"
@@ -97,12 +94,14 @@ export default function({ navigation }) {
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 value={props.values.senha}
-                                onChangeText={props.handleChange}
-                            />            
+                                onChangeText={text => props.setFieldValue('senha', text)}
+                            />
+                            { props.errors.senha && <Text style={styles.errors}>{props.errors.senha}</Text> }      
                         </View>
 
-                        <Text style={styles.label}>CONFIRMAR SENHA SENHA</Text>
+                        
                         <View style={styles.form} >
+                            <Text style={styles.label}>CONFIRMAR SENHA SENHA</Text>
                             <TextInput 
                                 style={styles.input}
                                 textAlign="center"
@@ -114,8 +113,9 @@ export default function({ navigation }) {
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 value={props.values.senha2}
-                                onChangeText={props.handleChange}
-                            />            
+                                onChangeText={text => props.setFieldValue('senha2', text)}
+                            />    
+                            { props.errors.senha2 && <Text style={styles.errors}>{props.errors.senha2}</Text> }        
                         </View>
                         <TouchableOpacity style={styles.button} type="submit" onPress={props.handleSubmit}>
                             <Text>CADASTRAR</Text>
@@ -135,8 +135,9 @@ export default function({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    logo: {
-        marginTop: 50
+    logo: {      
+        width:  200,
+        height:  100
     },
 
     container: {
@@ -157,19 +158,18 @@ const styles = StyleSheet.create({
     },
 
     form: {
-        width: 250,
+        width: 300,
         height: 30,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 10
+        marginBottom: 30,
+        marginTop: 40
     },
 
     label: {
         fontSize: 18,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 15,
-        marginTop: 25   
+        alignItems: 'center'
     },
 
     button:{
@@ -180,7 +180,8 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 25,
+        marginBottom: 5
     },
 
     labelCadastro: {
@@ -198,5 +199,9 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginTop: 5,
         textDecorationLine: 'underline'
+    },
+
+    errors: {
+        color: 'red'
     }
 });
