@@ -1,101 +1,128 @@
-import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import React from 'react';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
+import { Formik, useFormik, Form } from 'formik';
 import api from '../../services/api';
+import Yup from 'yup';
+import ValidateCadastro from '../../Componentes/schema/CadastroSchema';
 
-import Logo from '../../../assets/Icon_empresa.png';
+import Logo from '../../../assets/ico.png';
 
 export default function({ navigation }) { 
 
-    const [ cmailuser, setEmail] = useState('');
-    const [ csenhuser, setSenha] = useState('');
-    const [ senha2, setSenha2] = useState('');
-
-    async function handleSubmit() {
-        
-        if (csenhuser === senha2 ){
-            await api.post('/user/cadastro', {
-                cmailuser,
-                csenhuser
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-            //const { _id } = response.data;
-
-            //await AsyncStorage.setItem('cmailuser', cmailuser);
-            //await AsyncStorage.setItem('csenhuser', csenhuser);
-
-            navigation.navigate('Login');
-        };    
-    };
-
     return (
         <View style={styles.container}>
+            
             <Image 
                 source={Logo}
                 style={styles.logo}
             />
-            
-            <Text style={styles.label}>E-MAIL</Text>
-            <View style={styles.form} >
-                <TextInput 
-                    style={styles.input}
-                    textAlign="center"
-                    textContentType='emailAddress'
-                    placeholder="E-mail"
-                    placeholderTextColor="#D9DBDC"
-                    keyboardType="email-address"
-                    autoCompleteType="email"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    value={cmailuser}
-                    onChangeText={setEmail}
-                />            
-            </View>
+    
+            <Formik
+                initialValues={{ nome: '', email: '', senha: '', senha2: '', error: '' }}
+                validateOnChange
+                validationSchema={ValidateCadastro}
+                onSubmit={(values, { setSubmitting, setErrors }) => {
+                    let nome = values.nome;
+                    let email = values.email;
+                    let senha = values.senha;
 
-            <Text style={styles.label}>SENHA</Text>
-            <View style={styles.form} >
-                <TextInput 
-                    style={styles.input}
-                    textAlign="center"
-                    textContentType='password'
-                    secureTextEntry={true}
-                    placeholder="Senha"
-                    placeholderTextColor="#D9DBDC"
-                    autoCompleteType="password"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    value={csenhuser}
-                    onChangeText={setSenha}
-                />            
-            </View>
+                    api.post('/cadastro', {
+                        nome, email, senha
+                    })
+                    .then(res => {
+                        alert('Usuario cadastrado com sucesso!');
+                        navigation.navigate('loginProfissional');
+                    })
+                    .catch(error => {
+                        setSubmitting(false);                       
+                        setErrors(error.response.data);
+                        console.log(error.response.data);
+                    });
+                }}
+            >
+                {(props) => (
+                    <View style={styles.container}>
+                        
+                        <View style={styles.form} >
+                            <Text style={styles.label}>NOME</Text>  
+                            <TextInput 
+                                style={styles.input}
+                                textAlign="center"
+                                textContentType='emailAddress'
+                                placeholder="Nome completo"
+                                placeholderTextColor="#D9DBDC"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                value={props.values.nome}
+                                onChangeText={text => props.setFieldValue('nome', text)}
+                            />
+                            { props.dirty && props.errors.nome && <Text style={styles.errors}>{props.errors.nome}</Text> }
+                        </View>
 
-            <Text style={styles.label}>CONFIRMAR SENHA SENHA</Text>
-            <View style={styles.form} >
-                <TextInput 
-                    style={styles.input}
-                    textAlign="center"
-                    textContentType='password'
-                    secureTextEntry={true}
-                    placeholder="Confirmar Senha"
-                    placeholderTextColor="#D9DBDC"
-                    autoCompleteType="password"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    value={senha2}
-                    onChangeText={setSenha2}
-                />            
-            </View>
+                        
+                        <View style={styles.form} >
+                            <Text style={styles.label}>E-MAIL</Text>
+                            <TextInput 
+                                style={styles.input}
+                                textAlign="center"
+                                textContentType='emailAddress'
+                                placeholder="E-mail"
+                                placeholderTextColor="#D9DBDC"
+                                keyboardType="email-address"
+                                autoCompleteType="email"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                value={props.values.email}
+                                onChangeText={text => props.setFieldValue('email', text)}
+                            /> 
+                            { props.dirty && props.errors.email && <Text style={styles.errors}>{props.errors.email}</Text> }
+                        </View>
 
-            
+                        
+                        <View style={styles.form} >
+                            <Text style={styles.label}>SENHA</Text>
+                            <TextInput 
+                                style={styles.input}
+                                textAlign="center"
+                                textContentType='password'
+                                secureTextEntry={true}
+                                placeholder="Senha"
+                                placeholderTextColor="#D9DBDC"
+                                autoCompleteType="password"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                value={props.values.senha}
+                                onChangeText={text => props.setFieldValue('senha', text)}
+                            />
+                            { props.dirty && props.errors.senha && <Text style={styles.errors}>{props.errors.senha}</Text> }      
+                        </View>
 
-            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                <Text>CADASTRAR</Text>
-            </TouchableOpacity>
+                        
+                        <View style={styles.form} >
+                            <Text style={styles.label}>CONFIRMAR SENHA SENHA</Text>
+                            <TextInput 
+                                style={styles.input}
+                                textAlign="center"
+                                textContentType='password'
+                                secureTextEntry={true}
+                                placeholder="Confirmar Senha"
+                                placeholderTextColor="#D9DBDC"
+                                autoCompleteType="password"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                value={props.values.senha2}
+                                onChangeText={text => props.setFieldValue('senha2', text)}
+                            />    
+                            { props.dirty && props.errors.senha2 && <Text style={styles.errors}>{props.errors.senha2}</Text> }        
+                        </View>
+
+                        { props.errors.error && <Text style={styles.errorCadastro}>{props.errors.error}</Text> }
+                        <TouchableOpacity style={styles.button} type="submit" onPress={props.handleSubmit}>
+                            <Text>CADASTRAR</Text>
+                        </TouchableOpacity>                        
+                    </View>
+                )}
+            </Formik>
 
             <Text style={styles.labelCadastro}>Ao clicar em cadastrar você concorda com os
                 <TouchableOpacity>
@@ -103,15 +130,14 @@ export default function({ navigation }) {
                 </TouchableOpacity>
             </Text>
 
-            
-
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    logo: {
-        marginTop: 50
+    logo: {      
+        width:  200,
+        height:  100
     },
 
     container: {
@@ -132,19 +158,18 @@ const styles = StyleSheet.create({
     },
 
     form: {
-        width: 250,
+        width: 300,
         height: 30,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 10
+        marginBottom: 30,
+        marginTop: 40
     },
 
     label: {
         fontSize: 18,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 15,
-        marginTop: 25   
+        alignItems: 'center'
     },
 
     button:{
@@ -155,14 +180,16 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 25,
+        marginBottom: 5
     },
 
     labelCadastro: {
         fontSize: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10
+        marginTop: 10,
+        paddingLeft: 10
     },
 
     labelBold: {
@@ -172,5 +199,13 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginTop: 5,
         textDecorationLine: 'underline'
+    },
+
+    errors: {
+        color: 'red'
+    },
+
+    errorCadastro: {
+        marginBottom: -20,
     }
 });
